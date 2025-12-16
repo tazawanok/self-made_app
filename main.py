@@ -92,6 +92,9 @@ cn.display_select_mode()
 # ジャンル表示
 cn.display_select_genre()
 
+# 選択内容の表示（お悩み・ジャンル）
+cn.display_selected_filters()
+
 # モード変更時の処理
 if cn.is_mode_changed():
     # 会話履歴のクリア

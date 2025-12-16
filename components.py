@@ -41,6 +41,22 @@ def display_app_title():
     st.markdown(f"## {ct.APP_NAME}")
 
 
+def display_selected_filters():
+    """
+    現在選択されている「お悩み」と「ジャンル」をメイン画面に表示
+    """
+    mode = st.session_state.get("mode")
+    genre = st.session_state.get("mode_2")
+
+    left, right = st.columns(2)
+    with left:
+        st.markdown("**お悩み**")
+        st.info(mode or "未選択", icon=":material/help:")
+    with right:
+        st.markdown("**ジャンル**")
+        st.info(genre or "未選択", icon=":material/category:")
+
+
 def display_select_mode():
     """
     回答モードのラジオボタンを表示
