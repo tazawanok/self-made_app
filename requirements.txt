@@ -113,10 +113,3 @@ tzdata==2024.2
 urllib3==2.3.0
 watchdog==6.0.0
 yarl==1.18.3
-s==4.12.2
-tzdata==2024.2
-urllib3==2.3.0
-watchdog==6.0.0
-yarl==1.18.3
-faiss-cpu==1.9.0
-pymupdf==1.24.14
