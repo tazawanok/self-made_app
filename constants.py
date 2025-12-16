@@ -71,6 +71,7 @@ COMPANY_LAW_PDF_URL = "https://laws.e-gov.go.jp/data/Act/417AC0000000086/618544_
 VECTOR_STORE_PATH = "./data/vector_store"
 CHUNK_SIZE = 1000
 CHUNK_OVERLAP = 200
+SEARCH_TOP_K = 5
 EMBEDDING_BATCH_SIZE = 100  # OpenAI Embedding APIの制限を考慮したバッチサイズ
 
 

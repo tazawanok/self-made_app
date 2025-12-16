@@ -192,6 +192,11 @@ def display_contact_llm_response(llm_response):
     else:
         # 文字列の場合はそのまま使用
         answer = str(llm_response)
+
+    # ReActの思考ログ（Thought/Action）がそのまま返ってきた場合のフォールバック
+    # Tool実行に失敗した際に中間ステップが混ざることがあるため、ユーザーには簡潔な案内のみ表示する。
+    if "Action:" in answer and "Final Answer" not in answer:
+        answer = "外部検索が完了しませんでした。キーワードを変えて再度お試しください。"
     
     # 回答を表示
     st.markdown(answer)
@@ -238,7 +243,6 @@ def get_company_law_advice(param):
     """
     会社法に関する質問に対して、RAGを使って回答を生成
     """
-    import streamlit as st
     
     # ベクトルストアが初期化されていない場合はエラーメッセージ
     if "vector_store" not in st.session_state or st.session_state.vector_store is None:
@@ -246,7 +250,7 @@ def get_company_law_advice(param):
     
     try:
         # 関連する文書を検索
-        retriever = st.session_state.vector_store.as_retriever(search_kwargs={"k": 5})
+        retriever = st.session_state.vector_store.as_retriever(search_kwargs={"k": ct.SEARCH_TOP_K})
         docs = retriever.get_relevant_documents(param)
         
         # 検索結果を文脈として結合
